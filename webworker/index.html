@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Jan Gottweiss & Marcel Haas">
+    <meta name="description" content="Projektarbeit im Rahmen der Mastervorlesung Web Engineering am CAS. Kurzvorstellung des Thema Webworkers.">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <!-- <link rel="stylesheet" href="stylesheet.css"> -->
+    <title>WebWorkers</title>
+</head>
+
+<body>
+    <header>
+
+        <div class="navbar-fixed" id="oben_ID">
+            <nav>
+                <div class="nav-wrapper">
+                    <a class="brand-logo right logo">
+                        <img src="https://www.cas.dhbw.de/typo3conf/ext/dhbw_cas/Resources/Public/Images/DHBW_CAS_logo.svg" height="60px" alt="logo">
+                    </a>
+                    <a class="brand-logo center">
+                        WebWorkers
+                    </a>
+
+                    <ul class="left hide-on-med-and-down">
+                        <li>
+                            <a href="#probl_ID">Problematik</a>
+                        </li>
+                        <li>
+                            <a href="#Was_ID">Was</a>
+                        </li>
+                        <li>
+                            <a href="#Wie_ID">Wie</a>
+                        </li>
+                        <li>
+                            <a href="#Wofuer_ID">Wofür</a>
+                        </li>
+                        <li>
+                            <a href="#bsp_ID">Beispiel</a>
+                        </li>
+                        <li>
+                            <a href="#quellen_ID">Quellen</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+    </header>
+
+    <main class="container">
+        <h1>WebWorkers</h1>
+        <p>Projektarbeit im Rahmen der Mastervorlesung "Grundlagen Web-Engineering" am
+            <em title="Center for Advanced Studies">CAS</em> der
+            <em title="Duale Hochschule Baden-Württemberg">DHBW</em>
+        </p>
+
+        <article id="probl_ID">
+            <h2>Problematik</h2>
+            <p>JavaScript ist eine Single-Threaded-Umgebnung. Das heißt, die Programme werden immer nur auf einem Thread, dem
+                Hauptthread, ausgeführt. Bei großen Berechnungen führt das dazu, dass die Website während der Scriptauführung
+                nicht mehr oder nur noch bedingt reagiert und bedient werden kann. Zur Abhilfe wurde von den Webentwicklern
+                deshalb oftmals eine Nebenläufigkeit mittels setTimeout(), setInterval(), XMLHttpRequest und Ereignis-Handlern
+                nachgeahmt. Aber auch damit konnte kein wirkliches Multi-Threading erreicht werden. Seit HTML5 gibt es nun
+                die sogenannten WebWorker. Mit diesen kann nun erstmals JavaScript-Code in ein separates File ausgelagert
+                und als eigenständiger Prozess abgearbeitet werden.</p>
+            </ul>
+        </article>
+
+        <article id="Was_ID">
+            <h2>Was versteht man unter einem WebWorker?
+                <a href="#oben_ID" class="material-icons">arrow_drop_up</a>
+            </h2>
+            <p>Ein Webworker ist ein Objekt welches JavaScript-Code in einem separaten Thread ausführt, sodass die Leistung
+                des Hauptthreads weiterhin für die Benutzerinteraktion mit der Homepage zur Verfügung stehen kann. Dazu wird
+                beim Erstellen des Objektes auf ein externes JavaScript-File verwiesen. Grundsätzlich unterscheidet man zwei
+                Arten von WebWorkern:
+                <ul>
+                    <li>Dedicated Worker</li>
+                    <li>Shared Worker</li>
+                    <li>Service Worker</li>
+                    <li>Audio Worker</li>
+
+                </ul>
+                Während ein
+                <em>Dedicated Worker</em> lediglich aus demjenigen Skript heraus verwendet werden kann das den Worker erzeugt
+                hat, kann ein
+                <em>Shared Worker</em> aus unterschiedlichen Skripten heraus genutzt werden. Bis auf einige Ausnahmen können
+                die meisten JavaScript-Funktionen auch in den Workern verwendet werden.
+            </p>
+        </article>
+
+        <article id="Wie_ID">
+            <h2>Wie wird ein WebWorker verwendet?
+                <a href="#oben_ID" class="material-icons">arrow_drop_up</a>
+            </h2>
+            <p>##Hier wird kurz erklärt, wie man einen Webworker verwendet.##</p>
+            <!--Kommunikation zwischen WebWorker und Skrip erfolgt über Messages (postMessage() und onmessage)
+            byVal anstatt byRef
+            Ein Worker kann auch weitere Worker erzeugen
+            Es können über importScripts(); weitere Js importiert werden
+            Beim SharedWorker muss mittels eines Port-Objekt ein Port geöffnet werden, worüber kommuniziert wird. Das kann implizit über start() erfolgen (vor dem Senden von Messages) oder explizit über das onmessage-Event (wird benötigt bei Verwendung von addEventListener())
+            
+            -Dedicated Worker-
+            Empfohlen bzgl. Kompatibilität:     if (window.Worker) {...}
+            Neuen Worker erzeugen:              var myWorker = new Worker('worker.js');
+            Nachricht an Worker senden:         function() {  myWorker.postMessage([a,b]);}
+            Worker empfängt & sendet Nachricht: onmessage = function(e) { var workerResult = e.data[0] * e.data[1]; postMessage(workerResult);} 
+            Nachricht vom Worker empfangen:     myWorker.onmessage = function(e) { result.textContent = e.data;}
+            Worker abbrechen:                   myWorker.terminate();
+            Worker schließen:                   close();
+
+            -Shared Worker-
+            Neuen Worker erzeugen:              var myWorker = new SharedWorker('worker.js');
+            Nachricht an Worker senden:         function() {  myWorker.port.postMessage([a,b];}
+            Worker empfängt & sendet Nachricht: onconnect = function(e) {var port = e.ports[0]; port.onmessage = function(e) {var workerResult = e.data[0] * e.data[1];  port.postMessage(workerResult);}}
+            Nachricht vom Worker empfangen:     myWorker.port.onmessage = function(e) { result2.textContent = e.data;}
+            
+            Hier muss dann die Erklärung unserers Beispieles rein!
+        -->
+        </article>
+
+        <article id="Wofuer_ID">
+            <h2>Wofür wird ein WebWorker eingesetzt?
+                <a href="#oben_ID" class="material-icons">arrow_drop_up</a>
+            </h2>
+            <p>Ein WebWorker kann für verschiedenste Anwendungsgebiete eingesetzt werden. Beispielsweise für ... </p>
+            <ul>
+                <li>Auslagern leistungsintensiver Rechenoperationen um die Interaktion mit der Homepage während der Berechnung
+                    nicht zu beeinträchtigen</li>
+            </ul>
+        </article>
+
+        <article id="bsp_ID">
+            <h2>Beispiel
+                <a href="#oben_ID" class="material-icons">arrow_drop_up</a>
+            </h2>
+            <p>##Hier wird der Einsatz anhand eines kurzen Beispiels gezeigt##</p>
+
+            <!-- LIVE TRYOUT EXAMPLE -->
+            <section class="pageSection">
+                    <h3>Responsive?</h3>
+                    <button class="btn waves-effect waves-light" id="test">Still Responsive?</button>
+                <h3>Without Worker</h3>
+                <div class="progress" id="loader">
+                    <div class="indeterminate"></div>
+                </div>
+                <p>
+                    <form action="" method="post" id="prime">
+                        <div>
+                            <input type="text" id="number" name="number" placeholder="Number" />
+                            <br>
+                            <button class="btn waves-effect waves-light" type="submit" name="action">Calculate without WebWorker</button>
+
+                        </div>
+                    </form>
+                </p>
+                <p>
+                    <label for="runningTime">Running Time:</label>
+                    <br>
+                    <input id="runningTime" disabled="true" />
+                    <br>
+                    <label for="output">Result:</label>
+                    <br>
+                    <textarea id="output" disabled="true"></textarea>
+                </p>
+            </section>
+
+            <section class="pageSection">
+                <h3>With Worker</h3>
+                <div class="progress" id="loaderWorker">
+                    <div class="indeterminate"></div>
+                </div>
+                <p>
+                    <form action="" method="post" id="primeWorker">
+                        <div>
+                            <input type="text" id="numberWorker" name="number" placeholder="Number" />
+                            <br>
+                            <input class="btn waves-effect waves-light" type="submit" value="Calculate WITH Worker" />
+                        </div>
+                    </form>
+                </p>
+                <p>
+                    <label for="runningTimeWorker">Running Time:</label>
+                    <br>
+                    <input id="runningTimeWorker" disabled="true" />
+                    <br>
+                    <label for="outputWorker">Result:</label>
+                    <br>
+                    <textarea id="outputWorker" disabled="true"></textarea>
+                </p>
+            </section>
+
+
+        </article>
+
+        <article id="quellen_ID">
+            <h2>Quellen
+                <a href="#oben_ID" class="material-icons">arrow_drop_up</a>
+            </h2>
+            <ul>
+                <li>
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers#" title="Abruf am 24.07.2018">Mozilla Development Network</a>
+                </li>
+                <li>
+                    <a href="https://www.html5rocks.com/de/tutorials/workers/basics/" title="Abruf am 24.07.2018">HTML5Rocks</a>
+                </li>
+            </ul>
+        </article>
+    </main>
+
+
+    <footer class="page-footer">
+        <div class="footer-copyright">
+            <div class="container">
+                © 2018 by Jan Gottweiss und Marcel Haas
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+
+</body>
+
+</html>

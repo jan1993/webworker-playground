@@ -1,0 +1,16 @@
+.listElem  {
+    list-style-type:circle! important;
+    margin-left:25px;
+}
+
+h1 {
+    font-size:3rem !important;
+}
+
+h2 {
+    font-size: 2rem !important;
+}
+
+h3 {
+    font-size: 1.5rem !important;
+}

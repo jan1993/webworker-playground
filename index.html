@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="de">
-<!--TEST-->
+
 <head>
     <meta charset="utf-8">
     <meta name="author" content="Jan Gottweiss & Marcel Haas">
     <meta name="description" content="Projektarbeit im Rahmen der Mastervorlesung Web Engineering am CAS. Kurzvorstellung des Thema Webworkers.">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-    <!-- <link rel="stylesheet" href="stylesheet.css"> -->
+    <link rel="stylesheet" href="stylesheet.css">
     <title>WebWorkers</title>
 </head>
 
@@ -20,9 +20,9 @@
                     <a class="brand-logo right logo">
                         <img src="https://www.cas.dhbw.de/typo3conf/ext/dhbw_cas/Resources/Public/Images/DHBW_CAS_logo.svg" height="60px" alt="logo">
                     </a>
-                    <a class="brand-logo center">
+                    <!--<a class="brand-logo left">
                         WebWorkers
-                    </a>
+                    </a>-->
 
                     <ul class="left hide-on-med-and-down">
                         <li>
@@ -38,8 +38,12 @@
                             <a href="#Wofuer_ID">Wofür</a>
                         </li>
                         <li>
+                            <a href="#Einschr_ID">Einschränkungen</a>
+                        </li>
+                        <li>
                             <a href="#bsp_ID">Beispiel</a>
                         </li>
+
                         <li>
                             <a href="#quellen_ID">Quellen</a>
                         </li>
@@ -59,29 +63,30 @@
 
         <article id="probl_ID">
             <h2>Problematik</h2>
-            <p>JavaScript ist eine Single-Threaded-Umgebnung. Das heißt, die Programme werden immer nur auf einem Thread, dem
-                Hauptthread, ausgeführt. Bei großen Berechnungen führt das dazu, dass die Website während der Scriptauführung
-                nicht mehr oder nur noch bedingt reagiert und bedient werden kann. Zur Abhilfe wurde von den Webentwicklern
-                deshalb oftmals eine Nebenläufigkeit mittels setTimeout(), setInterval(), XMLHttpRequest und Ereignis-Handlern
-                nachgeahmt. Aber auch damit konnte kein wirkliches Multi-Threading erreicht werden. Seit HTML5 gibt es nun
-                die sogenannten WebWorker. Mit diesen kann nun erstmals JavaScript-Code in ein separates File ausgelagert
-                und als eigenständiger Prozess abgearbeitet werden.</p>
-            </ul>
+            <p>
+                JavaScript ist eine Single-Threaded-Umgebnung. Das heißt, die Programme werden immer nur auf einem Thread, dem Hauptthread,
+                ausgeführt. Skripte werden der Reihe nach ausgeführt. Bei großen Berechnungen führt das dazu, dass die Website
+                während der Scriptauführung nicht mehr oder nur noch bedingt reagiert und somit bedient werden kann. Zur
+                Abhilfe wurde von den Webentwicklern deshalb oftmals eine Nebenläufigkeit mittels setTimeout(), setInterval(),
+                XMLHttpRequest und Ereignis-Handlern nachgeahmt. Aber auch damit konnte kein wirkliches Multi-Threading erreicht
+                werden. Seit HTML5 steht nun eine sogenannte WebWorker-API zur Verfügung. Mit dieser kann nun erstmals JavaScript-Code
+                in ein separates File ausgelagert und als eigenständiger Prozess abgearbeitet werden.
+            </p>
         </article>
 
         <article id="Was_ID">
             <h2>Was versteht man unter einem WebWorker?
                 <a href="#oben_ID" class="material-icons">arrow_drop_up</a>
             </h2>
-            <p>Ein Webworker ist ein Objekt welches JavaScript-Code in einem separaten Thread ausführt, sodass die Leistung
-                des Hauptthreads weiterhin für die Benutzerinteraktion mit der Homepage zur Verfügung stehen kann. Dazu wird
-                beim Erstellen des Objektes auf ein externes JavaScript-File verwiesen. Grundsätzlich unterscheidet man zwei
-                Arten von WebWorkern:
+            <p>
+                Ein Webworker ist ein Objekt welches JavaScript-Code in einem separaten Thread ausführt, sodass die Leistung des Hauptthreads
+                weiterhin für die Benutzerinteraktion mit der Homepage zur Verfügung stehen kann. Dazu wird beim Erstellen
+                des Objektes auf ein externes JavaScript-File verwiesen. Grundsätzlich unterscheidet man zwei Arten von WebWorkern:
                 <ul>
-                    <li>Dedicated Worker</li>
-                    <li>Shared Worker</li>
-                    <li>Service Worker</li>
-                    <li>Audio Worker</li>
+                    <li class="listElem">Dedicated Worker</li>
+                    <li class="listElem">Shared Worker</li>
+                    <li class="listElem">Service Worker</li>
+                    <li class="listElem">Audio Worker</li>
 
                 </ul>
                 Während ein
@@ -92,12 +97,26 @@
             </p>
         </article>
 
+        <article id="Wofuer_ID">
+            <h2>Wofür wird ein WebWorker eingesetzt?
+                <a href="#oben_ID" class="material-icons">arrow_drop_up</a>
+            </h2>
+            <p>Ein WebWorker kann für verschiedenste Anwendungsgebiete eingesetzt werden. Beispielsweise für ... </p>
+            <ul>
+                <li>Auslagern leistungsintensiver Rechenoperationen um die Interaktion mit der Homepage während der Berechnung
+                    nicht zu beeinträchtigen</li>
+            </ul>
+        </article>
+
         <article id="Wie_ID">
             <h2>Wie wird ein WebWorker verwendet?
                 <a href="#oben_ID" class="material-icons">arrow_drop_up</a>
             </h2>
-            <p>##Hier wird kurz erklärt, wie man einen Webworker verwendet.##</p>
-            <!--Kommunikation zwischen WebWorker und Skrip erfolgt über Messages (postMessage() und onmessage)
+            <p>
+                Das Skript welches vom Webworker verarbeitet werden soll muss zunächst in ein separates JavaScript-File ausgelagert werden.
+                Anschließend wird im Hauptfile ein neuer Worker angelegt: var myWorker = new Worker ('myWorker.js')
+            </p>
+            <!--Kommunikation zwischen WebWorker und Skript erfolgt über Messages (postMessage() und onmessage)
             byVal anstatt byRef
             Ein Worker kann auch weitere Worker erzeugen
             Es können über importScripts(); weitere Js importiert werden
@@ -122,16 +141,18 @@
         -->
         </article>
 
-        <article id="Wofuer_ID">
-            <h2>Wofür wird ein WebWorker eingesetzt?
-                <a href="#oben_ID" class="material-icons">arrow_drop_up</a>
-            </h2>
-            <p>Ein WebWorker kann für verschiedenste Anwendungsgebiete eingesetzt werden. Beispielsweise für ... </p>
-            <ul>
-                <li>Auslagern leistungsintensiver Rechenoperationen um die Interaktion mit der Homepage während der Berechnung
-                    nicht zu beeinträchtigen</li>
-            </ul>
+        <article id="Einschr_ID">
+            <h2>Einschränkungen</h2>
+            <p>
+                Bei der Verwendung von Webworkern gibt es einige Einschränkungen, die es zu beachten gilt:
+                <ul>
+                    <li class="listElem">Keinen Zugriff auf das DOM</li>
+                    <li class="listElem">....</li>
+                </ul>
+            </p>
         </article>
+
+
 
         <article id="bsp_ID">
             <h2>Beispiel
@@ -141,8 +162,8 @@
 
             <!-- LIVE TRYOUT EXAMPLE -->
             <section class="pageSection">
-                    <h3>Responsive?</h3>
-                    <button class="btn waves-effect waves-light" id="test">Still Responsive?</button>
+                <h3>Responsive?</h3>
+                <button class="btn waves-effect waves-light" id="test">Still Responsive?</button>
                 <h3>Without Worker</h3>
                 <div class="progress" id="loader">
                     <div class="indeterminate"></div>
@@ -206,6 +227,9 @@
                 </li>
                 <li>
                     <a href="https://www.html5rocks.com/de/tutorials/workers/basics/" title="Abruf am 24.07.2018">HTML5Rocks</a>
+                </li>
+                <li>
+                    <a href="https://materializecss.com/" title="Abruf am 24.07.2018">Materialize CSS</a>
                 </li>
             </ul>
         </article>

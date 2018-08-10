@@ -1,4 +1,4 @@
-# Webworker Playground
+# Web Workers
 
 **Deployed Version: https://dhbw-cas-webworkers.netlify.com/**
 

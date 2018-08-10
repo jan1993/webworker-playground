@@ -2,6 +2,8 @@
 
 ### **Interaktives Beispiel: https://dhbw-cas-webworkers.netlify.com/**
 
+[Video zum Beispiel Primzahlen](https://youtu.be/16P0GW8L6l8)
+
 ## Aufbau des Repositories
 
 Das Repository enthält ein [interaktives Beispiel](https://dhbw-cas-webworkers.netlify.com/) inklusive erläuterungen zur [Web Workers API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API). Dieses Beispiel besteht aus den Dateien *index.html, main.js* sowie *worker.js*. Die Funktionsweise und erläuterungen finden sich direkt im Beispiel. 

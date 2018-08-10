@@ -52,6 +52,7 @@ function test() {
 
 
 (function () {
+    
     document.addEventListener("DOMContentLoaded", function () {
         const testBtn = document.querySelector("#test");
 

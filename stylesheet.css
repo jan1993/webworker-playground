@@ -14,3 +14,23 @@ h2 {
 h3 {
     font-size: 1.5rem !important;
 }
+
+.spoiler {
+    display: none;
+}
+
+.trigger.close {
+    display: none;
+}
+
+.trigger.open:target {
+    display: none;
+}
+
+.trigger.open:target + .trigger.close {
+    display: inline;
+}
+
+.trigger.open:target + .trigger.close + .spoiler {    
+    display: block;
+}

@@ -8,7 +8,7 @@ Das Repository enthält ein [interaktives Beispiel](https://dhbw-cas-webworkers.
 
 Dieses interaktive Beispiel stellt im Rahmen der Seminararbeit die Abgabe dar. 
 
-Zusätzlich enthält das Repository noch weitere Beispiele ohne erläuterungen. Diese sind in den Ordnern [multiply](https://dhbw-cas-webworkers.netlify.com/multiply/), [fibonacci](https://dhbw-cas-webworkers.netlify.com/fibonacci/) und [prime]((https://dhbw-cas-webworkers.netlify.com/prime/) zu finden. Diese Beispiele können zur Vertiefung des Themas genutzt werden. 
+Zusätzlich enthält das Repository noch weitere zwei (simple) Beispiele ohne erläuterungen. Diese sind in den Ordnern [multiply](https://dhbw-cas-webworkers.netlify.com/multiply/) und [fibonacci](https://dhbw-cas-webworkers.netlify.com/fibonacci/) zu finden. Diese Beispiele können zur Vertiefung des Themas genutzt werden. 
 
 ## Quellen & weitere Informationen
 

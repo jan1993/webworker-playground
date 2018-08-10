@@ -4,8 +4,4 @@
 
 Projektarbeit im Rahmen der Mastervorlesung "Grundlagen Web-Engineering" am CAS der DHBW
 
-Marcel Haas & Jan Gottweiß
-
-
-
-
+**Marcel Haas & Jan Gottweiß**

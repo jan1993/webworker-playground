@@ -1,3 +1,4 @@
+// Calculate the Prime numbers
 function isPrimeNumber(number) {
     if (number == 1 || number == 2) {
         return true;
@@ -11,6 +12,7 @@ function isPrimeNumber(number) {
     return true;
 };
 
+// Calculate the Prime numbers
 function nextPrime(number) {
     var n;
     if (number % 2 == 0) {
@@ -23,6 +25,7 @@ function nextPrime(number) {
     return n;
 };
 
+// Message from Main Thread received => Start Calculation
 onmessage = function (e) {
     const n = e.data;
     var primeNumbers = [];

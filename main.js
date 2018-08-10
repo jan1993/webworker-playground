@@ -1,3 +1,4 @@
+// Calculate the Prime numbers
 function isPrimeNumber(number) {
     if (number == 1 || number == 2) {
         return true;
@@ -11,15 +12,7 @@ function isPrimeNumber(number) {
     return true;
 };
 
-function unique(arr) {
-    return arr.reduce(function (p, c) {
-        if (p.indexOf(c) < 0) {
-            p.push(c);
-        }
-        return p;
-    }, []);
-};
-
+// Calculate the Prime numbers
 function nextPrime(number) {
     var n;
     if (number % 2 == 0) {
@@ -30,6 +23,15 @@ function nextPrime(number) {
 
     }
     return n;
+};
+
+function unique(arr) {
+    return arr.reduce(function (p, c) {
+        if (p.indexOf(c) < 0) {
+            p.push(c);
+        }
+        return p;
+    }, []);
 };
 
 /*
@@ -57,6 +59,7 @@ function test() {
         const testBtn = document.querySelector("#test");
 
         // WITHOUT WORKER
+        // Select all the required UI Elements for User Interaction
         const form = document.querySelector("#prime");
         const number = document.querySelector("#number");
         const output = document.querySelector("#output");
@@ -65,6 +68,7 @@ function test() {
         loader.style.display = "none";
 
         // WITH WORKER
+        // Select all the required UI Elements for User Interaction
         const primeWorker = new Worker("worker.js");
         const formWorker = document.querySelector("#primeWorker");
         const numberWorker = document.querySelector("#numberWorker");
@@ -73,6 +77,7 @@ function test() {
         const loaderWorker = document.getElementById("loaderWorker")
         loaderWorker.style.display = "none";
 
+        // Change the button color to verify if the page is responsive
         testBtn.onclick = test;
 
         // WITHOUT WORKER

@@ -68,16 +68,13 @@
                             <a href="#probl_ID">Problematik</a>
                         </li>
                         <li>
-                            <a href="#Was_ID">Was</a>
-                        </li>
-                        <li>
-                            <a href="#Wie_ID">Wie</a>
-                        </li>
-                        <li>
-                            <a href="#Wofuer_ID">Wofür</a>
+                            <a href="#Was_ID">Was ist ein WebWorker?</a>
                         </li>
                         <li>
                             <a href="#Einschr_ID">Einschränkungen</a>
+                        </li>
+                        <li>
+                            <a href="#Wie_ID">Wie wird ein WebWorker eingesetzt?</a>
                         </li>
                         <li>
                             <a href="#bsp_ID">Beispiel</a>
@@ -103,13 +100,17 @@
         <article id="probl_ID">
             <h2>Problematik</h2>
             <p>
-                JavaScript ist eine Single-Threaded-Umgebnung. Das heißt, die Programme werden immer nur auf einem Thread, dem Hauptthread,
-                ausgeführt. Skripte werden der Reihe nach ausgeführt. Bei großen Berechnungen führt das dazu, dass die Website
-                während der Scriptauführung nicht mehr oder nur noch bedingt reagiert und somit bedient werden kann. Zur
-                Abhilfe wurde von den Webentwicklern deshalb oftmals eine Nebenläufigkeit mittels setTimeout(), setInterval(),
-                XMLHttpRequest und Ereignis-Handlern nachgeahmt. Aber auch damit konnte kein wirkliches Multi-Threading erreicht
-                werden. Seit HTML5 steht nun eine sogenannte WebWorker-API zur Verfügung. Mit dieser kann nun erstmals JavaScript-Code
-                in ein separates File ausgelagert und als eigenständiger Prozess abgearbeitet werden.
+                JavaScript ist grundsätzlich eine Single-Threaded-Umgebnung. Das heißt, die Programme werden immer nur auf einem Thread,
+                dem Hauptthread, ausgeführt, wobei Skripte der Reihe nach abgearbeitet werden. Bei großen und wenig performanten
+                Berechnungen führt das dazu, dass die Website während der Scriptauführung nicht mehr oder nur noch bedingt
+                reagiert und somit bedient werden kann. Zur Abhilfe wurde von den Webentwicklern deshalb oftmals eine Art
+                Nebenläufigkeit mittels
+                <code>setTimeout()</code>,
+                <code>setInterval()</code>,
+                <code>XMLHttpRequest</code> und Ereignis-Handlern nachgeahmt. Aber auch damit konnte kein wirkliches Multi-Threading erreicht werden.
+                Seit HTML5 steht nun eine sogenannte WebWorker-API zur Verfügung. Mit dieser kann nun erstmals in ein separates
+                File ausgelagerter JavaScript-Code als eigenständiger Prozess abgearbeitet werden. Dadurch kann nun Multithreading
+                in einem gewissen Rahmen umgesetzt werden.
             </p>
         </article>
 
@@ -120,31 +121,54 @@
             <p>
                 Ein Webworker ist ein Objekt welches JavaScript-Code in einem separaten Thread ausführt, sodass die Leistung des Hauptthreads
                 weiterhin für die Benutzerinteraktion mit der Homepage zur Verfügung stehen kann. Dazu wird beim Erstellen
-                des Objektes auf ein externes JavaScript-File verwiesen. Grundsätzlich unterscheidet man zwei Arten von WebWorkern:
+                des Objektes auf ein externes JavaScript-File verwiesen.
+            </p>
+            <p>Grundsätzlich können neben einigen weiteren Ausprägungen, drei Arten von WebWorkern unterschieden werden:
                 <ul>
                     <li class="listElem">Dedicated Worker</li>
                     <li class="listElem">Shared Worker</li>
                     <li class="listElem">Service Worker</li>
-                    <li class="listElem">Audio Worker</li>
 
                 </ul>
                 Während ein
                 <em>Dedicated Worker</em> lediglich aus demjenigen Skript heraus verwendet werden kann das den Worker erzeugt
                 hat, kann ein
-                <em>Shared Worker</em> aus unterschiedlichen Skripten heraus genutzt werden. Bis auf einige Ausnahmen können
-                die meisten JavaScript-Funktionen auch in den Workern verwendet werden.
+                <em>Shared Worker</em> aus unterschiedlichen Skripten heraus genutzt werden.
+                <em>Service Worker</em> werden als Proxy Server zwischen Webanwendungen, dem Browser und dem Netzwerk eingesetzt.
+                Beispielsweise werden ServiceWorker verwendet, um Webinhalte offline verfügbar zu machen oder für Push-Benachrichtigungen.
             </p>
+
+            <p>
+                Die auf dieser Seite beschriebenen Inhalte beziehen sich ausschließlich auf
+                <em>Dedicated Worker</em>.
+            </p>
+
+
+            <p>Ein WebWorker kann für verschiedenste Anwendungsgebiete eingesetzt werden. Beispielsweise für:</p>
+            <ul>
+                <li class="listElem">
+                    Auslagern leistungsintensiver Rechenoperationen um die Interaktion mit der Homepage während der Berechnung nicht zu beeinträchtigen
+                </li>
+                <li class="listElem">
+                    Umsetzung einer Offline-Verfügbarkeit der Webinhalte, als Ersatz für
+                    <em>AppCash</em>.
+            </ul>
         </article>
 
-        <article id="Wofuer_ID">
-            <h2>Wofür wird ein WebWorker eingesetzt?
-                <a href="#oben_ID" class="material-icons">arrow_drop_up</a>
-            </h2>
-            <p>Ein WebWorker kann für verschiedenste Anwendungsgebiete eingesetzt werden. Beispielsweise für ... </p>
-            <ul>
-                <li>Auslagern leistungsintensiver Rechenoperationen um die Interaktion mit der Homepage während der Berechnung
-                    nicht zu beeinträchtigen</li>
-            </ul>
+        <article id="Einschr_ID">
+            <h2>Einschränkungen</h2>
+            <p>
+                Die Kommunikation zwischen WebWorker und Hauptthread erfolgt über klar definierte Schnittstellen. Dabei gibt es keine Variablen,
+                die von beiden Teilen - sowohl vom Hauptthread, als auch vom WebWorker - verwendet werden können. Auch die
+                Kommunikation mit dem DOM kann nur über den Hauptthread erfolgen. Der WebWorker selbst hat keinen direkten
+                Zugriff auf das DOM. Die beiden Ausführungskontexte sind also völlig voneinander getrennt. Die Kommunikation
+                zwischen Hauptthread und WebWorker erfolgt dabei ausschließlich über eine
+                <code>postMessage()</code>-Methode und einen
+                <code>onmessage</code>-Event-Handler. Dabei ist zu beachten, dass die übergebenen Daten lediglich kopiert und nicht geteilt werden.
+            </p>
+            <p>Für die Programmierung eines WebWorkers stehen neben vielen browsertypischen APIs nahezu alle Befehle aus dem
+                ECMA-Script-Standard zur Verfügung.
+            </p>
         </article>
 
         <article id="Wie_ID">
@@ -152,9 +176,56 @@
                 <a href="#oben_ID" class="material-icons">arrow_drop_up</a>
             </h2>
             <p>
-                Das Skript welches vom Webworker verarbeitet werden soll muss zunächst in ein separates JavaScript-File ausgelagert werden.
-                Anschließend wird im Hauptfile ein neuer Worker angelegt: var myWorker = new Worker ('myWorker.js')
+                Das Skript welches vom Webworker verarbeitet werden soll muss zunächst in ein separates JavaScript-File (hier: myWorker.js)
+                ausgelagert werden. Anschließend wird im Hauptfile mit
+                <em> new Worker() </em>ein neuer Worker erzeugt und einer Variablen (hier: myWorker) zugewiesen:
+                <code><div>var myWorker = new Worker ('myWorker.js')</div></code>
             </p>
+            <p>
+                Nun ist der Worker erzeugt und es kann eine Message definiert werden, welche an den Worker gesendet wird:
+                <code><div>myWorker.postMessage("Max");</div></code>
+            </p>
+
+            <p>
+                Nun wird noch ein Stück Code benötigt, welches auf die Rückantwort des Workers wartet und daraufhin eine Aktion ausführt:
+                <code>
+                    <div>myWorker.onmessage = function(e) {</div>
+                    <div>&emsp;var result = e.data;</div>
+                    <div>&emsp;alert(result);</div>
+                    <div>}</div>
+                </code>
+            </p>
+
+            <p>
+                Anschließend muss der JS-Code des Workers (myWorker.js) so erweitert werden, dass er auf Nachrichten vom Hauptthread reagieren
+                und Nachrichten an den Hauptthread zurücksenden kann. Hierzu wird der onmessage-Event-Handler verwendet der
+                direkt einer Funktion zugewiesen wird. Mit
+                <em> var workerResult</em> wird eine neue Variable definiert, welche schließlich über die Funktion
+                <em>postMessage(workerResult)</em> zurück an den Hauptthread gesendet wird. Über
+                <em>e.data</em> kann auf die an den Worker gesendeten Daten zugegriffen werden:
+                <code>
+                    <div>onmessage = function(e) {</div>
+                    <div>&emsp;var workerResult = "Hallo " + e.data;</div>
+                    <div>&emsp;postMessage(workerResult);</div>
+                    <div>}</div>
+                </code>
+            </p>
+
+            <p>
+                Zum Beenden des Workers aus dem Hauptthread wird die Funktion
+                <em>close()</em> verwendet:
+                <code>
+                    <div>myWorker.close()</div>
+                </code>
+            </p>
+
+            <p>
+                Um den Worker aus dem Worker-Script zu beenden, steht die Funktion
+                <em>terminate()</em> zur Verfügung:
+                <code><div>me.terminate()</div></code>
+            </p>
+
+
             <!--Kommunikation zwischen WebWorker und Skript erfolgt über Messages (postMessage() und onmessage)
             byVal anstatt byRef
             Ein Worker kann auch weitere Worker erzeugen
@@ -162,10 +233,7 @@
             Beim SharedWorker muss mittels eines Port-Objekt ein Port geöffnet werden, worüber kommuniziert wird. Das kann implizit über start() erfolgen (vor dem Senden von Messages) oder explizit über das onmessage-Event (wird benötigt bei Verwendung von addEventListener())
             
             -Dedicated Worker-
-            Empfohlen bzgl. Kompatibilität:     if (window.Worker) {...}
-            Neuen Worker erzeugen:              var myWorker = new Worker('worker.js');
             Nachricht an Worker senden:         function() {  myWorker.postMessage([a,b]);}
-            Worker empfängt & sendet Nachricht: onmessage = function(e) { var workerResult = e.data[0] * e.data[1]; postMessage(workerResult);} 
             Nachricht vom Worker empfangen:     myWorker.onmessage = function(e) { result.textContent = e.data;}
             Worker abbrechen:                   myWorker.terminate();
             Worker schließen:                   close();
@@ -180,16 +248,7 @@
         -->
         </article>
 
-        <article id="Einschr_ID">
-            <h2>Einschränkungen</h2>
-            <p>
-                Bei der Verwendung von Webworkern gibt es einige Einschränkungen, die es zu beachten gilt:
-                <ul>
-                    <li class="listElem">Keinen Zugriff auf das DOM</li>
-                    <li class="listElem">....</li>
-                </ul>
-            </p>
-        </article>
+
 
 
 
@@ -279,8 +338,9 @@
                 </p>
             </section>
 
-        <h3>Video zum Beispiel</h3>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/16P0GW8L6l8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <h3>Video zum Beispiel</h3>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/16P0GW8L6l8" frameborder="0" allow="autoplay; encrypted-media"
+                allowfullscreen></iframe>
 
         </article>
 
@@ -290,13 +350,16 @@
             </h2>
             <ul>
                 <li>
-                    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers#" title="Abruf am 24.07.2018">Mozilla Development Network</a>
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers#" title="Mozilla Development Network">Mozilla Development Network, Abruf am 24.07.2018</a>
                 </li>
                 <li>
-                    <a href="https://www.html5rocks.com/de/tutorials/workers/basics/" title="Abruf am 24.07.2018">HTML5Rocks</a>
+                    <a href="https://www.html5rocks.com/de/tutorials/workers/basics/" title="HTML5Rocks">HTML5Rocks, Abruf am 24.07.2018</a>
                 </li>
                 <li>
-                    <a href="https://materializecss.com/" title="Abruf am 24.07.2018">Materialize CSS</a>
+                    <a href="https://materializecss.com/" title="Materialize CSS">Materialize CSS, Abruf am 24.07.2018</a>
+                </li>
+                <li>
+                    <a href="http://dx.doi.org/10.1007/978-3-658-05444-1" title="Objektorientierte Programmierung mit JavaScript">Jörg Bewersdorf (2018): Objektorientierte Programmierung mit JavaScript, 2. Auflage, Springer Verlag</a>
                 </li>
             </ul>
         </article>

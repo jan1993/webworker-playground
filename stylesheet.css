@@ -9,11 +9,13 @@ h1 {
 
 h2 {
     font-size: 2rem !important;
+    margin-top:90px !important;
 }
 
 h3 {
     font-size: 1.5rem !important;
 }
+
 
 .spoiler {
     display: none;

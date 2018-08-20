@@ -65,23 +65,28 @@
 
                     <ul class="left hide-on-med-and-down">
                         <li>
-                            <a href="#probl_ID">Problematik</a>
-                        </li>
-                        <li>
-                            <a href="#Was_ID">Was ist ein WebWorker?</a>
-                        </li>
-                        <li>
-                            <a href="#Einschr_ID">Einschränkungen</a>
-                        </li>
-                        <li>
-                            <a href="#Wie_ID">Wie wird ein WebWorker eingesetzt?</a>
-                        </li>
-                        <li>
-                            <a href="#bsp_ID">Beispiel</a>
+                            
+                            <a href="#oben_ID">Home</a>
                         </li>
 
                         <li>
-                            <a href="#quellen_ID">Quellen</a>
+                            <a href="#probl_ID_Jump">Problematik</a>
+                        </li>
+                        <li>
+                            <a href="#Was_ID_Jump">Was ist ein WebWorker?</a>
+                        </li>
+                        <li>
+                            <a href="#Einschr_ID_Jump">Einschränkungen</a>
+                        </li>
+                        <li>
+                            <a href="#Wie_ID_Jump">Wie wird ein WebWorker eingesetzt?</a>
+                        </li>
+                        <li>
+                            <a href="#bsp_ID_Jump">Beispiel</a>
+                        </li>
+
+                        <li>
+                            <a href="#quellen_ID_Jump">Quellen</a>
                         </li>
                     </ul>
                 </div>
@@ -96,7 +101,8 @@
             <em title="Center for Advanced Studies">CAS</em> der
             <em title="Duale Hochschule Baden-Württemberg">DHBW</em>
         </p>
-
+        
+        <p id="probl_ID_Jump"></p>
         <article id="probl_ID">
             <h2>Problematik</h2>
             <p>
@@ -113,7 +119,8 @@
                 in einem gewissen Rahmen umgesetzt werden.
             </p>
         </article>
-
+        
+        <p id="Was_ID_Jump"></p>
         <article id="Was_ID">
             <h2>Was versteht man unter einem WebWorker?
                 <a href="#oben_ID" class="material-icons">arrow_drop_up</a>
@@ -123,7 +130,8 @@
                 weiterhin für die Benutzerinteraktion mit der Homepage zur Verfügung stehen kann. Dazu wird beim Erstellen
                 des Objektes auf ein externes JavaScript-File verwiesen.
             </p>
-            <p>Grundsätzlich können neben einigen weiteren Ausprägungen, drei Arten von WebWorkern unterschieden werden:
+            <p>Grundsätzlich können neben einigen weiteren Ausprägungen, drei grundsätzliche Arten von WebWorkern unterschieden
+                werden:
                 <ul>
                     <li class="listElem">Dedicated Worker</li>
                     <li class="listElem">Shared Worker</li>
@@ -136,10 +144,7 @@
                 <em>Shared Worker</em> aus unterschiedlichen Skripten heraus genutzt werden.
                 <em>Service Worker</em> werden als Proxy Server zwischen Webanwendungen, dem Browser und dem Netzwerk eingesetzt.
                 Beispielsweise werden ServiceWorker verwendet, um Webinhalte offline verfügbar zu machen oder für Push-Benachrichtigungen.
-            </p>
-
-            <p>
-                Die auf dieser Seite beschriebenen Inhalte beziehen sich ausschließlich auf
+                Die auf dieser Seite beschriebenen Inhalte beziehen sich größtenteils auf
                 <em>Dedicated Worker</em>.
             </p>
 
@@ -147,7 +152,7 @@
             <p>Ein WebWorker kann für verschiedenste Anwendungsgebiete eingesetzt werden. Beispielsweise für:</p>
             <ul>
                 <li class="listElem">
-                    Auslagern leistungsintensiver Rechenoperationen um die Interaktion mit der Homepage während der Berechnung nicht zu beeinträchtigen
+                    Auslagern leistungsintensiver Rechenoperationen, um die Interaktion mit der Homepage während der Berechnung nicht zu beeinträchtigen
                 </li>
                 <li class="listElem">
                     Umsetzung einer Offline-Verfügbarkeit der Webinhalte, als Ersatz für
@@ -155,12 +160,13 @@
             </ul>
         </article>
 
+        <p id="Einschr_ID_Jump"></p>
         <article id="Einschr_ID">
             <h2>Einschränkungen</h2>
             <p>
                 Die Kommunikation zwischen WebWorker und Hauptthread erfolgt über klar definierte Schnittstellen. Dabei gibt es keine Variablen,
                 die von beiden Teilen - sowohl vom Hauptthread, als auch vom WebWorker - verwendet werden können. Auch die
-                Kommunikation mit dem DOM kann nur über den Hauptthread erfolgen. Der WebWorker selbst hat keinen direkten
+                Kommunikation mit dem DOM kann nur über den Hauptthread erfolgen. Der WebWorker selbst hat dabei keinen direkten
                 Zugriff auf das DOM. Die beiden Ausführungskontexte sind also völlig voneinander getrennt. Die Kommunikation
                 zwischen Hauptthread und WebWorker erfolgt dabei ausschließlich über eine
                 <code>postMessage()</code>-Methode und einen
@@ -171,6 +177,7 @@
             </p>
         </article>
 
+        <p id="Wie_ID_Jump"></p>
         <article id="Wie_ID">
             <h2>Wie wird ein WebWorker verwendet?
                 <a href="#oben_ID" class="material-icons">arrow_drop_up</a>
@@ -213,57 +220,35 @@
 
             <p>
                 Zum Beenden des Workers aus dem Hauptthread wird die Funktion
-                <em>close()</em> verwendet:
+                <em>terminate()</em> verwendet:
                 <code>
-                    <div>myWorker.close()</div>
+                    <div>myWorker.terminate()</div>
                 </code>
             </p>
 
             <p>
                 Um den Worker aus dem Worker-Script zu beenden, steht die Funktion
-                <em>terminate()</em> zur Verfügung:
-                <code><div>me.terminate()</div></code>
+                <em>close()</em> zur Verfügung:
+                <code><div>this.close()</div></code>
             </p>
-
-
-            <!--Kommunikation zwischen WebWorker und Skript erfolgt über Messages (postMessage() und onmessage)
-            byVal anstatt byRef
-            Ein Worker kann auch weitere Worker erzeugen
-            Es können über importScripts(); weitere Js importiert werden
-            Beim SharedWorker muss mittels eines Port-Objekt ein Port geöffnet werden, worüber kommuniziert wird. Das kann implizit über start() erfolgen (vor dem Senden von Messages) oder explizit über das onmessage-Event (wird benötigt bei Verwendung von addEventListener())
-            
-            -Dedicated Worker-
-            Nachricht an Worker senden:         function() {  myWorker.postMessage([a,b]);}
-            Nachricht vom Worker empfangen:     myWorker.onmessage = function(e) { result.textContent = e.data;}
-            Worker abbrechen:                   myWorker.terminate();
-            Worker schließen:                   close();
-
-            -Shared Worker-
-            Neuen Worker erzeugen:              var myWorker = new SharedWorker('worker.js');
-            Nachricht an Worker senden:         function() {  myWorker.port.postMessage([a,b];}
-            Worker empfängt & sendet Nachricht: onconnect = function(e) {var port = e.ports[0]; port.onmessage = function(e) {var workerResult = e.data[0] * e.data[1];  port.postMessage(workerResult);}}
-            Nachricht vom Worker empfangen:     myWorker.port.onmessage = function(e) { result2.textContent = e.data;}
-            
-            Hier muss dann die Erklärung unserers Beispieles rein!
-        -->
         </article>
 
 
 
 
-
+        <p id="bsp_ID_Jump"></p>
         <article id="bsp_ID">
             <h2>Beispiel
                 <a href="#oben_ID" class="material-icons">arrow_drop_up</a>
             </h2>
             <p>
                 Das nachfolgende Beispiel soll anhand der Berechnung von Primzahlen die Funktionsweise sowie die Vorteile der Web Workers
-                veranschaulichen. Das Beispiel führt die Berechnung einmal ohne und einmal mit Web Workers aus. </p>
+                veranschaulichen. Das Beispiel führt die Berechnung einmal ohne und einmal mit einem Web Worker aus. </p>
             <p>Primzahlen werden jeweils bis zur eingebenen Zahl berechnet. Wird hier beispielsweise eine 10 eingetragen, so
                 werden alle Primzahlen von 1-10 berechnet (=> 1 3 5 7 11). Die Funktion zur Berechnung der Primzahlen ist
-                bei beiden Beispielne Identisch. Jedoch wird im Abschnitt "Without Web Workers" die Berechnung im Main Thread
-                durchgeführt. Im Abschnitt "With Web Workers" wird diese Berechnung auf einen Worker ausgelagert und der
-                Input sowie Output zum Main Thread kommuniziert.
+                bei beiden Beispielen identisch. Jedoch wird im Abschnitt "Without Web Workers" die Berechnung im Main Thread
+                durchgeführt. Im Abschnitt "With Web Workers" wird diese Berechnung in einen Worker ausgelagert und der Input
+                sowie Output zum Main Thread kommuniziert.
             </p>
 
             <h3>Wie wird das Beispiel verwendet?</h3>
@@ -274,12 +259,12 @@
                 <li class="listElem">Zuerst berechnen wir Primzahlen bis zur Zahl 1000 mit beiden Varianten. Kann man hier bereits einen Unterschied
                     feststellen?
                 </li>
-                <li class="listElem">Da die Berechnung so schnell durchgeführt wurde konnte man natührlich noch keinen Unterschied feststellen.
+                <li class="listElem">Da die Berechnung so schnell durchgeführt wurde, konnte man natürlich noch keinen Unterschied feststellen.
                 </li>
                 <li class="listElem">Im nächsten Schritt steigern wir die Komplexität und berechnen Primzahlen bis zur Zahl 50000. Als erstes
-                    wird diese Berechnugn ohne Web Workers durchgeführt. Was können wir nunr feststellen? Bewegt sich der
+                    wird diese Berechnung ohne den Web Worker durchgeführt. Was können wir nun feststellen? Bewegt sich der
                     Ladeindikator korrekt? Funktioniert der "Still Responsive Button"?</li>
-                <li class="listElem">Zum Vergleich wird die selbe Berechnung nun mit Hilfe eines Web Workers durchgeführt. Welche Unterschiede
+                <li class="listElem">Zum Vergleich wird dieselbe Berechnung nun mit Hilfe eines Web Workers durchgeführt. Welche Unterschiede
                     können nun festegestellt werden?</li>
             </ul>
 
@@ -338,12 +323,15 @@
                 </p>
             </section>
 
-            <h3>Video zum Beispiel</h3>
+            <h3>Video zum Beispiel
+                <a href="#oben_ID" class="material-icons">arrow_drop_up</a>
+            </h3>
             <iframe width="560" height="315" src="https://www.youtube.com/embed/16P0GW8L6l8" frameborder="0" allow="autoplay; encrypted-media"
                 allowfullscreen></iframe>
 
         </article>
 
+        <p id="quellen_ID_Jump"></p>
         <article id="quellen_ID">
             <h2>Quellen
                 <a href="#oben_ID" class="material-icons">arrow_drop_up</a>

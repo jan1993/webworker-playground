@@ -93,7 +93,7 @@ function test() {
                     primeNumbers.push(nextPrime(i));
                 }
                 const end = new Date();
-                runningTimeInput.value = end.getTime() - start.getTime()
+                runningTimeInput.value = end.getTime() - start.getTime() + " ms";
                 output.value = unique(primeNumbers).join(" ");
                 loader.style.display = "none";
             }, 0)
@@ -102,8 +102,10 @@ function test() {
 
 
         // WITH WORKER
+        var startW;
         formWorker.addEventListener("submit", function (e) {
             e.preventDefault();
+            startW = new Date();
             loaderWorker.style.display = "block";
             outputWorker.value = "";
             const n = numberWorker.value;
@@ -112,6 +114,8 @@ function test() {
 
         primeWorker.onmessage = function (e) {
             console.log(e.data);
+            const endW = new Date();
+            runningTimeInputWorker.value = endW.getTime() - startW.getTime() + " ms";
             outputWorker.value = unique(e.data).join(" ");
             loaderWorker.style.display = "none";
         }
